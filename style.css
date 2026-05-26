@@ -1,6 +1,3 @@
-/* ═══════════════════════════════════════════
-   CSS VARIABLES & THEME
-═══════════════════════════════════════════ */
 :root {
   --bg: #0A0A0F;
   --surface: #12121A;
@@ -31,9 +28,6 @@ body.light-mode {
   --toast-bg: #ffffff;
 }
 
-/* ═══════════════════════════════════════════
-   RESET & BASE
-═══════════════════════════════════════════ */
 *,
 *::before,
 *::after {
@@ -107,9 +101,6 @@ section {
   background-clip: text;
 }
 
-/* ═══════════════════════════════════════════
-   REVEAL ANIMATIONS
-═══════════════════════════════════════════ */
 .reveal {
   opacity: 0;
   transform: translateY(40px);
@@ -166,9 +157,6 @@ section {
   transition-delay: 0.4s;
 }
 
-/* ═══════════════════════════════════════════
-   NAVBAR
-═══════════════════════════════════════════ */
 .navbar {
   position: fixed;
   top: 0;
@@ -354,9 +342,6 @@ body.light-mode .theme-toggle .icon-moon {
   }
 }
 
-/* ═══════════════════════════════════════════
-   HERO
-═══════════════════════════════════════════ */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -702,9 +687,6 @@ body.light-mode .blob {
   }
 }
 
-/* ═══════════════════════════════════════════
-   ABOUT
-═══════════════════════════════════════════ */
 .about .container {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -794,9 +776,6 @@ body.light-mode .blob {
   }
 }
 
-/* ═══════════════════════════════════════════
-   SKILLS
-═══════════════════════════════════════════ */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

@@ -1,24 +1,3 @@
-/* ═══════════════════════════════════════════
-   CONFIG — Edit bagian ini untuk kustomisasi portfolio
-   ═══════════════════════════════════════════
-   
-   🔧 PANDUAN KUSTOMISASI:
-   
-   Untuk mengganti data pribadi, cukup edit objek CONFIG di bawah ini.
-   Semua teks di halaman akan otomatis berubah sesuai CONFIG.
-   
-   - name      : Nama lengkap kamu
-   - title     : Array teks yang akan ditampilkan sebagai typing animation
-   - about     : Paragraf perkenalan di section About
-   - email     : Alamat email (untuk kontak & mailto link)
-   - github    : URL profil GitHub lengkap
-   - linkedin  : URL profil LinkedIn lengkap
-   - cvLink    : URL ke file CV (ganti "#" dengan link Google Drive/PDF)
-   - location  : Kota dan negara kamu
-   - education : Nama universitas/institusi pendidikan
-   - status    : Status kerja ("Open to Work" / "Available for Freelance" / dll)
-   
-═══════════════════════════════════════════ */
 const CONFIG = {
   name: "Alfath Ariya Ilahi",
   title: ["Game Developer", "Networking"],
@@ -32,14 +11,10 @@ const CONFIG = {
   status: "Open to Work"
 };
 
-/* ═══════════════════════════════════════════
-   GITHUB REPOS — Fetched dynamically from GitHub API
-═══════════════════════════════════════════ */
 const GITHUB_USERNAME = "alfathAriyaIlahi";
-let GITHUB_REPOS = []; // Will be populated by fetch
+let GITHUB_REPOS = [];
 
-// Custom images for repositories (Map repo name to image path)
-// Contoh: 'nama-repo': 'Assets/gambar.png'
+
 const REPO_IMAGES = {
   'tetris-duel': 'Assets/tetris.png',
   'resto-online': 'Assets/resto.png',
@@ -80,24 +55,6 @@ const LANG_EMOJI = {
   'default': '📁'
 };
 
-/* ═══════════════════════════════════════════
-   SKILLS DATA — Data skill/keahlian
-   ═══════════════════════════════════════════
-   
-   🔧 PANDUAN KUSTOMISASI:
-   
-   Tiap kategori berisi:
-   - category : Nama grup (Frontend, Backend, Tools, Database, dll)
-   - items    : Array skill, masing-masing punya:
-     - name : Nama skill
-     - icon : Class icon dari Devicons CDN
-               Cari icon di: https://devicon.dev/
-               Format: "devicon-[nama]-plain" atau "devicon-[nama]-original"
-   
-   Untuk MENAMBAH kategori baru, tambahkan object baru di array.
-   Untuk MENAMBAH skill, tambahkan item baru di array items.
-   
-═══════════════════════════════════════════ */
 const SKILLS = [
   {
     category: "Frontend",
@@ -134,46 +91,32 @@ const SKILLS = [
   }
 ];
 
-/* ═══════════════════════════════════════════
-   SVG ICONS (reusable)
-═══════════════════════════════════════════ */
 const ICONS = {
   github: `<svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>`,
   linkedin: `<svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>`
 };
 
-/* ═══════════════════════════════════════════
-   POPULATE HTML FROM CONFIG
-═══════════════════════════════════════════ */
 (function populatePage() {
-  // Page title
   document.title = `${CONFIG.name} — Portfolio`;
 
-  // Navbar logo
   document.getElementById('nav-logo').textContent = CONFIG.name;
 
-  // Hero
   document.getElementById('hero-greeting').textContent = "Hello, Saya";
   document.getElementById('hero-name').textContent = CONFIG.name;
   document.getElementById('hero-desc').textContent = "Mengubah ide kreatif menjadi realitas digital. Fokus utama saya adalah pengembangan game, dengan keahlian tambahan di bidang web dan networking.";
 
-  // Hero roles (static, no typing animation)
   document.getElementById('hero-roles').innerHTML = CONFIG.title.map(t => `<span class="role-tag">${t}</span>`).join('<span class="role-divider">•</span>');
 
-  // Hero buttons
   document.getElementById('btn-download-cv').href = CONFIG.cvLink;
   document.getElementById('about-cv-btn').href = CONFIG.cvLink;
 
-  // Hero socials
   document.getElementById('hero-socials').innerHTML = `
     <a href="${CONFIG.github}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">${ICONS.github}</a>
     <a href="${CONFIG.linkedin}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">${ICONS.linkedin}</a>
   `;
 
-  // About
   document.getElementById('about-paragraph').textContent = CONFIG.about;
 
-  // About cards
   document.getElementById('about-cards').innerHTML = `
     <div class="about-card">
       <div class="card-icon">🎓</div>
@@ -192,7 +135,6 @@ const ICONS = {
     </div>
   `;
 
-  // Skills
   const skillsGrid = document.getElementById('skills-grid');
   skillsGrid.innerHTML = SKILLS.map(cat => `
     <div class="skill-category">
@@ -208,11 +150,9 @@ const ICONS = {
     </div>
   `).join('');
 
-  // Projects — show loading then fetch from GitHub
   showProjectsLoading();
   fetchGitHubRepos();
 
-  // Contact info
   document.getElementById('contact-info').innerHTML = `
     <a href="mailto:${CONFIG.email}" class="contact-item">
       <div class="ci-icon">✉️</div>
@@ -237,7 +177,6 @@ const ICONS = {
     </a>
   `;
 
-  // Footer
   document.getElementById('footer-text').innerHTML = `Designed &amp; Built by ${CONFIG.name} &copy; ${new Date().getFullYear()}`;
   document.getElementById('footer-socials').innerHTML = `
     <a href="${CONFIG.github}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">${ICONS.github}</a>
@@ -245,9 +184,6 @@ const ICONS = {
   `;
 })();
 
-/* ═══════════════════════════════════════════
-   GITHUB FETCH & RENDER
-═══════════════════════════════════════════ */
 function showProjectsLoading() {
   const grid = document.getElementById('projects-grid');
   grid.innerHTML = Array(4).fill('').map(() => `
@@ -270,11 +206,9 @@ async function fetchGitHubRepos() {
     if (!res.ok) throw new Error('GitHub API error');
     const repos = await res.json();
 
-    // Filter out forks and hidden repos, store globally
-    const HIDDEN_REPOS = ['cobacoba', 'reviewer', 'Game-Roket', 'SkillSwap', 'rental'];
+    const HIDDEN_REPOS = ['cobacoba', 'reviewer', 'Game-Roket', 'SkillSwap', 'rental', 'portofolio'];
     GITHUB_REPOS = repos.filter(r => !r.fork && !HIDDEN_REPOS.includes(r.name));
 
-    // Build filter bar from languages
     const languages = [...new Set(GITHUB_REPOS.map(r => r.language).filter(Boolean))];
     const filterBar = document.getElementById('filter-bar');
     filterBar.innerHTML = [
@@ -337,7 +271,6 @@ function renderGitHubProjects(filter) {
     `;
   }).join('');
 
-  // Re-observe new cards
   observeRevealElements();
   requestAnimationFrame(() => {
     document.querySelectorAll('.project-card.reveal').forEach(el => {
@@ -349,9 +282,6 @@ function renderGitHubProjects(filter) {
   });
 }
 
-/* ═══════════════════════════════════════════
-   FLOATING DOTS
-═══════════════════════════════════════════ */
 (function createDots() {
   const container = document.getElementById('floating-dots');
   for (let i = 0; i < 30; i++) {
@@ -368,11 +298,6 @@ function renderGitHubProjects(filter) {
   }
 })();
 
-/* Typing animation removed — roles displayed statically */
-
-/* ═══════════════════════════════════════════
-   INTERSECTION OBSERVER — reveal animations
-═══════════════════════════════════════════ */
 function observeRevealElements() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -392,22 +317,17 @@ function observeRevealElements() {
 
 observeRevealElements();
 
-/* ═══════════════════════════════════════════
-   NAVBAR SCROLL — blur background + active link
-═══════════════════════════════════════════ */
 const navbar = document.getElementById('navbar');
 const sections = document.querySelectorAll('section[id]');
 const navLinksAll = document.querySelectorAll('.nav-links a, .mobile-menu a');
 
 function updateNavbar() {
-  // Background blur
   if (window.scrollY > 50) {
     navbar.classList.add('scrolled');
   } else {
     navbar.classList.remove('scrolled');
   }
 
-  // Active link
   let current = '';
   sections.forEach(section => {
     const top = section.offsetTop - 120;
@@ -427,9 +347,6 @@ function updateNavbar() {
 window.addEventListener('scroll', updateNavbar, { passive: true });
 updateNavbar();
 
-/* ═══════════════════════════════════════════
-   HAMBURGER MENU
-═══════════════════════════════════════════ */
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -438,7 +355,6 @@ hamburger.addEventListener('click', () => {
   mobileMenu.classList.toggle('open');
 });
 
-// Close menu on link click
 document.querySelectorAll('.mobile-menu a').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('open');
@@ -446,9 +362,6 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
   });
 });
 
-/* ═══════════════════════════════════════════
-   PROJECT FILTER (GitHub repos)
-═══════════════════════════════════════════ */
 document.getElementById('filter-bar').addEventListener('click', (e) => {
   if (!e.target.classList.contains('filter-btn')) return;
 
@@ -458,24 +371,16 @@ document.getElementById('filter-bar').addEventListener('click', (e) => {
   renderGitHubProjects(e.target.dataset.filter);
 });
 
-/* ═══════════════════════════════════════════
-   CONTACT FORM — toast
-═══════════════════════════════════════════ */
 document.getElementById('contact-form').addEventListener('submit', (e) => {
   e.preventDefault();
 
-  // Reset form
   e.target.reset();
 
-  // Show toast
   const toast = document.getElementById('toast');
   toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 4000);
 });
 
-/* ═══════════════════════════════════════════
-   BACK TO TOP
-═══════════════════════════════════════════ */
 const backToTop = document.getElementById('back-to-top');
 
 window.addEventListener('scroll', () => {
@@ -490,12 +395,8 @@ backToTop.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-/* ═══════════════════════════════════════════
-   DARK / LIGHT THEME TOGGLE
-═══════════════════════════════════════════ */
 const themeToggle = document.getElementById('theme-toggle');
 
-// Init from localStorage or system preference
 (function initTheme() {
   const stored = localStorage.getItem('theme');
   if (stored === 'light') {
@@ -513,13 +414,10 @@ themeToggle.addEventListener('click', () => {
   localStorage.setItem('theme', isLight ? 'light' : 'dark');
 });
 
-/* ═══════════════════════════════════════════
-   SMOOTH SCROLL for all anchor links
-═══════════════════════════════════════════ */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
-    if (href === '#') return; // skip placeholder links
+    if (href === '#') return;
     e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
