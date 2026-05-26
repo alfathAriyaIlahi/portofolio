@@ -68,7 +68,8 @@ const SKILLS = [
     category: "Backend",
     items: [
       { name: "Laravel", icon: "devicon-laravel-plain" },
-      { name: "PHP", icon: "devicon-php-plain" }
+      { name: "PHP", icon: "devicon-php-plain" },
+      { name: "C#", icon: "devicon-csharp-plain" },
     ]
   },
   {
