@@ -5,7 +5,7 @@ const CONFIG = {
   email: "alfathariya04@gmail.com",
   github: "https://github.com/alfathAriyaIlahi",
   linkedin: "https://www.linkedin.com/in/alfath-ariya-ilahi-075536330/",
-  cvLink: "#",
+  cvLink: "https://drive.google.com/drive/u/0/folders/1YVsUYx_Xu0cd7303RFuxa0QqRP_Nrp5I",
   location: "Lampung, Indonesia",
   education: "Universitas Lampung",
   status: "Open to Work"
