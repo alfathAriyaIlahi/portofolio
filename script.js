@@ -207,7 +207,7 @@ async function fetchGitHubRepos() {
     if (!res.ok) throw new Error('GitHub API error');
     const repos = await res.json();
 
-    const HIDDEN_REPOS = ['cobacoba', 'reviewer', 'Game-Roket', 'SkillSwap', 'rental', 'portofolio'];
+    const HIDDEN_REPOS = ['cobacoba', 'reviewer', 'Game-Roket', 'SkillSwap', 'rental', 'portofolio', 'tetris-duel'];
     GITHUB_REPOS = repos.filter(r => !r.fork && !HIDDEN_REPOS.includes(r.name));
 
     const languages = [...new Set(GITHUB_REPOS.map(r => r.language).filter(Boolean))];
